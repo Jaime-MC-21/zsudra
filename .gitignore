@@ -1,0 +1,47 @@
+# ───── Generales de Java/Spring Boot ─────
+target/
+*.jar
+
+# Maven Wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+# Archivos sensibles y configuración
+application.properties
+*.dump
+
+# Archivos de ayuda
+HELP.md
+
+# ───── IDEs ─────
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+
+# ───── Exclusiones específicas de subdirectorios (permitir excepciones si hicieran falta) ─────
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/

@@ -1,0 +1,2348 @@
+/* 
+  :root - Define variables CSS personalizadas (custom properties) que pueden ser reutilizadas en todo el documento.
+  Aquí se definen los colores principales de la paleta en formato HSL (tono-saturación-luminosidad)
+  con variaciones de claridad (50, 100, 200, etc.) para cada color principal.
+*/
+:root {
+    --blue-50: #eff6ff;  /* Azul muy claro */
+    --blue-100: #dbeafe; /* Azul claro */
+    --blue-200: #bfdbfe; /* Azul medio claro */
+    --blue-600: #2563eb; /* Azul principal */
+    --blue-700: #1d4ed8; /* Azul oscuro */
+    --purple-600: #9333ea; /* Morado principal */
+    --purple-700: #7e22ce; /* Morado oscuro */
+    --gray-50: #f9fafb;   /* Gris muy claro */
+    --gray-100: #f3f4f6;  /* Gris claro */
+    --gray-200: #e5e7eb;  /* Gris medio claro */
+    --gray-300: #d1d5db;  /* Gris medio */
+    --gray-400: #9ca3af;  /* Gris */
+    --gray-500: #6b7280;  /* Gris medio oscuro */
+    --gray-600: #4b5563;  /* Gris oscuro */
+    --gray-700: #374151;  /* Gris muy oscuro */
+    --gray-900: #111827;  /* Gris casi negro */
+    --red-500: #ef4444;   /* Rojo para errores/alertas */
+    --yellow-400: #facc15; /* Amarillo para advertencias */
+    --green-500: #22c55e; /* Verde para éxitos */
+    --green-600: #16a34a; /* Verde oscuro */
+    /* ... colores existentes ... */
+  --primary-color: #215c7d; /* Verde similar al de la imagen (ajusta el código HEX según el tono exacto que deseas) */
+  --primary-hover: #316887; /* Versión más oscura para hover */
+
+}
+
+/* 
+  Reset básico para todos los elementos:
+  - Elimina márgenes y paddings por defecto
+  - Usa border-box para que padding y border no afecten el ancho/alto total
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 
+  Estilos base para el body:
+  - Fuente Inter (debe cargarse desde Google Fonts o similar)
+  - Fondo gris claro
+  - Color de texto gris oscuro
+*/
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--gray-50);
+    color: var(--gray-900);
+}
+
+/* 
+  Estilos para botones (clase base .btn):
+  - Diseño flex para alinear iconos y texto
+  - Padding y bordes redondeados
+  - Transición suave para efectos hover
+  - Cursor pointer para indicar que es clickable
+*/
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+/* Botón primario (color principal) */
+.btn-primary {
+  background-color: var(--primary-color); /* Nuevo color */
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Efecto hover */
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+/* Botón outline (borde con color primario) */
+.btn-outline {
+  background-color: white;
+  border-color: var(--primary-color); /* Borde con color primario */
+  color: var(--primary-color); /* Texto con color primario */
+}
+
+.btn-outline:hover {
+  background-color: rgba(46, 204, 113, 0.1); /* 10% del color primario */
+}
+
+/* Botón pequeño */
+.btn-sm {
+    padding: 0.5rem 1.30rem;
+    font-size: 1rem;
+}
+
+/* Botón grande */
+.btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+}
+
+/* Estado deshabilitado para botones */
+.btn-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* 
+  Estilos para tarjetas (cards):
+  - Fondo blanco
+  - Bordes redondeados
+  - Sombra sutil
+  - Transición para efecto hover
+*/
+.card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+/* Efecto hover para tarjetas - sombra más pronunciada */
+.card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado de tarjeta */
+.card-header {
+    padding: 0;
+}
+
+/* Contenido principal de tarjeta */
+.card-content {
+    padding: 1rem;
+}
+
+/* Pie de tarjeta */
+.card-footer {
+    padding: 1rem;
+    padding-top: 0;
+}
+
+/* 
+  Estilos para badges (etiquetas):
+  - Diseño flex para alinear iconos y texto
+  - Forma circular (border-radius grande)
+  - Tamaño de texto pequeño
+  - Fondo gris claro por defecto
+*/
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background-color: var(--gray-100);
+    color: var(--gray-700);
+    border: 1px solid var(--gray-200);
+}
+
+/* Variante secundaria para badges */
+.badge-secondary {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* 
+  Estilos para el header:
+  - Fondo blanco
+  - Sombra sutil
+  - Borde inferior gris
+  - Posición sticky para que quede fijo al hacer scroll
+  - Z-index alto para que aparezca por encima de otros elementos
+*/
+.header {
+    background-color: white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+/* Contenedor del header con ancho máximo y padding */
+.header-container {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Contenido interno del header - alineación y altura */
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+}
+
+/* Estilos para el logo */
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    cursor: pointer;
+    border: none;
+    background: none;
+    box-shadow: none;
+    outline: none;
+
+}
+
+/* Efecto hover para el logo */
+.logo:hover {
+    color: var(--blue-700);
+}
+
+/* Navegación oculta por defecto en móviles */
+.nav {
+    display: none;
+}
+
+/* Media query: muestra navegación en pantallas medianas/grandes */
+@media (min-width: 768px) {
+    .nav {
+        display: flex;
+        gap: 2rem;
+    }
+}
+
+/* Botones de navegación */
+.nav-btn {
+    color: var(--gray-700);
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+}
+
+/* Efecto hover para botones de navegación */
+.nav-btn:hover {
+    color: var(--blue-600);
+}
+
+/* Contenedor para acciones del header (como carrito) */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Botón del carrito */
+.cart-btn {
+    position: relative;
+    padding: 0.5rem;
+    color: var(--gray-600);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-btn i {
+    font-size: 20px;
+}
+
+/* Efecto hover para botón del carrito */
+.cart-btn:hover {
+    color: var(--blue-600);
+}
+
+/* Badge para indicar items en el carrito */
+.cart-badge {
+    position: absolute;
+    top: -0.25rem;
+    right: -0.25rem;
+    background-color: var(--red-500);
+    color: white;
+    font-size: 0.75rem;
+    border-radius: 9999px;
+    height: 1.25rem;
+    width: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 
+  Sección Hero (principal):
+  - Fondo con gradiente azul/morado
+  - Texto blanco
+  - Padding grande
+  - Texto centrado
+*/
+.hero {
+    background-color: #cccccc;
+    color: var(--gray-900);    /* texto oscuro para contraste */
+    padding: 5rem 1rem;
+    text-align: center;
+}
+
+
+/* Título del hero */
+.hero-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+/* Media query: tamaño de título más grande en pantallas grandes */
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 3.75rem;
+    }
+}
+
+/* Subtítulo del hero */
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Media query: tamaño de subtítulo más grande en pantallas grandes */
+@media (min-width: 768px) {
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+}
+
+/* 
+  Sección de cursos:
+  - Padding grande
+  - Contenedor con ancho máximo
+*/
+.courses-section {
+    padding: 4rem 1rem;
+}
+
+.courses-container {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Título de sección */
+.section-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Media query: tamaño de título más grande en pantallas grandes */
+@media (min-width: 768px) {
+    .section-title {
+        font-size: 2.25rem;
+    }
+}
+
+/* Subtítulo de sección */
+.section-subtitle {
+    font-size: 1.25rem;
+    color: var(--gray-600);
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* 
+  Grid de cursos:
+  - 1 columna por defecto (móviles)
+  - 2 columnas en tablets
+  - 3 columnas en pantallas grandes
+*/
+.courses-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+    .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .courses-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Imagen del curso */
+.course-img {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Efecto hover: zoom sutil en la imagen */
+.course-card:hover .course-img {
+    transform: scale(1.05);
+}
+
+/* Contenedor de imagen con overflow hidden para el efecto zoom */
+.course-img-container {
+    position: relative;
+    overflow: hidden;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+/* Badge de nivel del curso (posición absoluta) */
+.course-level {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
+/* Título del curso con límite de 2 líneas */
+.course-title {
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Efecto hover para el título */
+.course-title:hover {
+    color: var(--blue-600);
+}
+
+/* Nombre del instructor */
+.course-instructor {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    margin-bottom: 0.75rem;
+}
+
+/* Metadatos del curso (duración, rating, etc.) */
+.course-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    margin-bottom: 0.75rem;
+}
+
+/* Items individuales de metadatos */
+.course-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Contenedor de precio */
+.course-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Precio actual */
+.current-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--blue-600);
+}
+
+/* Precio original tachado */
+.original-price {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    text-decoration: line-through;
+}
+
+/* 
+  Estilos para modal (ventana emergente):
+  - Fondo semitransparente
+  - Posición fija que cubre toda la pantalla
+  - Centrado vertical y horizontal
+*/
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 1rem;
+}
+
+/* Contenedor del modal */
+.modal {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 28rem;
+}
+
+/* Encabezado del modal */
+.modal-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Título del modal */
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+/* Botón para cerrar modal */
+.modal-close {
+    color: var(--gray-500);
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+/* Efecto hover para botón cerrar */
+.modal-close:hover {
+    color: var(--gray-700);
+}
+
+/* Cuerpo del modal */
+.modal-body {
+    padding: 1.5rem;
+}
+
+/* Grupos de formulario */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+/* Etiquetas de formulario */
+.form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-700);
+    margin-bottom: 0.25rem;
+}
+
+/* Inputs de formulario */
+.form-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efecto focus para inputs */
+.form-input:focus {
+    outline: none;
+    border-color: var(--blue-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Textarea de formulario */
+.form-textarea {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    min-height: 6rem;
+    resize: vertical;
+}
+
+/* Efecto focus para textarea */
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--blue-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Texto de ayuda para formularios */
+.form-hint {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    margin-top: 0.25rem;
+}
+
+/* Mensaje de error */
+.form-error {
+    font-size: 0.875rem;
+    color: var(--red-600);
+    margin-top: -0.5rem;  /* Ajusta este valor según necesites */
+    margin-bottom: 1rem;  /* Añade espacio debajo del mensaje */
+    padding: 0.25rem 0;
+    display: block;  /* Asegura que ocupa su propia línea */
+}
+
+/* Estilo específico para el mensaje en el formulario de instructor */
+#instructor-message {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: #000000 !important; /* Fuerza el color negro */
+    font-weight: 500; /* Opcional: para mejor legibilidad */
+}
+
+/* Mensaje de éxito */
+.form-success {
+    font-size: 0.875rem;
+    color: var(--blue-600);
+}
+
+/* Pie del modal */
+.modal-footer {
+    padding: 1.5rem;
+    padding-top: 0;
+}
+
+/* Acciones del modal (botones) */
+.modal-actions {
+    display: flex;
+    justify-content: center; /* CENTRA horizontalmente */
+    gap: 1rem; /* Espacio entre botones */
+    margin-top: -2rem;
+}
+
+
+/* Enlaces en el modal */
+.modal-link {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    text-align: center; /* CENTRA horizontalmente */
+    display: block;
+}
+
+.modal-link button {
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--blue-600);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.modal-link button:hover {
+    color: var(--blue-700);
+    text-decoration: underline;
+}
+
+
+/* 
+  Mensaje de bienvenida (notificación):
+  - Posición fija en esquina superior derecha
+  - Gradiente verde
+  - Sombra
+  - Z-index alto para que aparezca sobre otros elementos
+*/
+.welcome-message {
+    position: fixed;
+    top: 5rem;
+    right: 1rem;
+    background: linear-gradient(to right, var(--blue-600), var(--blue-700))!important;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 40;
+    max-width: 24rem;
+}
+
+/* Contenido interno del mensaje */
+.welcome-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+/* Icono del mensaje */
+.welcome-icon {
+    flex-shrink: 0;
+    font-size: 1.5rem;
+}
+
+/* Contenido principal del mensaje */
+.welcome-content {
+    flex: 1;
+}
+
+/* Título del mensaje */
+.welcome-title {
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+/* Texto del mensaje */
+.welcome-text {
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+/* Texto secundario del mensaje */
+.welcome-hint {
+    font-size: 0.75rem;
+    opacity: 0.75;
+    margin-top: 0.5rem;
+}
+
+/* Botón para cerrar mensaje */
+.welcome-close {
+    flex-shrink: 0;
+    color: white;
+    background: none;
+    border: none;
+    font-size: 1.125rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Efecto hover para botón cerrar */
+.welcome-close:hover {
+    color: var(--gray-200);
+}
+
+/* 
+  Página de detalle de curso:
+  - Altura mínima de 100vh
+  - Fondo gris claro
+  - Padding vertical
+*/
+.course-detail {
+    min-height: 100vh;
+    background-color: var(--gray-50);
+    padding: 2rem 0;
+}
+
+/* Contenedor del curso */
+.course-container {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Grid para disposición de detalle de curso */
+.course-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+/* Media query: 2 columnas en pantallas grandes (contenido principal + sidebar) */
+@media (min-width: 1024px) {
+    .course-grid {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+/* Contenido principal del curso */
+.course-main {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Imagen del curso en detalle */
+.course-detail-img {
+    width: 100%;
+    height: 16rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Título del curso en detalle */
+.course-detail-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 1rem;
+}
+
+/* Descripción del curso */
+.course-detail-description {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    margin-bottom: 1.5rem;
+}
+
+/* Metadatos del curso (duración, nivel, etc.) */
+.course-detail-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Items individuales de metadatos */
+.course-detail-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Tarjeta de información del instructor */
+.course-instructor-card {
+    background-color: var(--gray-50);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Título de sección de instructor */
+.instructor-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+/* Contenedor de información del instructor */
+.instructor-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+/* Avatar del instructor */
+.avatar {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 9999px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--blue-100);
+    color: var(--blue-600);
+    font-size: 1.5rem;
+    font-weight: 500;
+    overflow: hidden;
+}
+
+/* Imagen del avatar (si tiene) */
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Nombre del instructor */
+.instructor-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+}
+
+/* Rol del instructor */
+.instructor-role {
+    color: var(--blue-600);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+/* Biografía del instructor */
+.instructor-bio {
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+/* Contenido del curso (lecciones) */
+.course-content {
+    margin-bottom: 2rem;
+}
+
+/* Encabezado de contenido del curso */
+.course-content-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--blue-50);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Título de contenido del curso */
+.course-content-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Metadatos de contenido (número de lecciones) */
+.course-content-meta {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+/* Lista de lecciones */
+.lesson-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Items de lección */
+.lesson-item {
+    background-color: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    transition: box-shadow 0.2s ease;
+}
+
+/* Efecto hover para lecciones */
+.lesson-item:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenido de la lección */
+.lesson-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Parte izquierda de la lección (icono + título) */
+.lesson-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Icono de lección */
+.lesson-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--blue-100);
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Título de lección */
+.lesson-title {
+    font-weight: 500;
+    color: var(--gray-900);
+}
+
+/* Número de lección */
+.lesson-number {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+}
+
+/* Duración de lección */
+.lesson-duration {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    font-weight: 500;
+}
+
+.lesson-description {
+  transition: all 0.3s ease;
+}
+
+.course-learning-lesson {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.course-learning-lesson:hover {
+  background-color: var(--gray-100);
+}
+
+/* 
+  Sidebar del curso:
+  - Posición sticky para que siga al hacer scroll
+  - Se posiciona arriba del todo con espacio para header
+*/
+.course-sidebar {
+    position: sticky;
+    top: 6rem;
+}
+
+/* Tarjeta del sidebar */
+.course-sidebar-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+}
+
+/* Contenedor de precio en sidebar */
+.course-price-container {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Precio actual en sidebar */
+.course-price-current {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--blue-600);
+}
+
+/* Precio original en sidebar */
+.course-price-original {
+    font-size: 1.125rem;
+    color: var(--gray-500);
+    text-decoration: line-through;
+}
+
+/* Acciones del curso (comprar, añadir al carrito) */
+.course-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* 
+  Página de carrito:
+  - Altura mínima de 100vh
+  - Fondo gris claro
+  - Padding vertical
+*/
+.cart-page {
+    min-height: 100vh;
+    background-color: var(--gray-50);
+    padding: 2rem 0;
+}
+
+/* Contenedor del carrito */
+.cart-container {
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Título del carrito */
+.cart-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 2rem;
+}
+
+/* Estado vacío del carrito */
+.cart-empty {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+/* Icono de carrito vacío */
+.cart-empty-icon {
+    font-size: 6rem;
+    color: var(--gray-300);
+    margin-bottom: 1rem;
+}
+
+/* Título de carrito vacío */
+.cart-empty-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-600);
+    margin-bottom: 0.5rem;
+}
+
+/* Texto de carrito vacío */
+.cart-empty-text {
+    color: var(--gray-500);
+    margin-bottom: 1.5rem;
+}
+
+/* Grid del carrito (items + resumen) */
+.cart-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+/* Media query: 2 columnas en pantallas grandes */
+@media (min-width: 1024px) {
+    .cart-grid {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+/* Items del carrito */
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Item individual del carrito */
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+.cart-item-img {
+  width: 6rem;
+  height: 4rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.cart-item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* Información del item */
+.cart-item-info {
+    flex: 1;
+}
+
+/* Título del item */
+.cart-item-title {
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+/* Instructor del item */
+.cart-item-instructor {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+}
+
+/* Rating del item */
+.cart-item-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+}
+
+/* Precio del item */
+.cart-item-price {
+    text-align: right;
+}
+
+/* Valor del precio */
+.cart-item-price-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--blue-600);
+}
+
+/* Resumen del carrito */
+.cart-summary {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Encabezado del resumen */
+.cart-summary-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+/* Título del resumen */
+.cart-summary-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Cuerpo del resumen */
+.cart-summary-body {
+    padding: 1.5rem;
+}
+
+/* Filas del resumen (subtotal, descuentos) */
+.cart-summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+/* Total del carrito */
+.cart-summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-top: 1px solid var(--gray-200);
+    padding-top: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Pie del resumen (botón de checkout) */
+.cart-summary-footer {
+    padding: 1.5rem;
+    padding-top: 0;
+}
+
+/* Nota pequeña en el resumen */
+.cart-summary-note {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+/* 
+  Página de perfil:
+  - Altura mínima de 100vh
+  - Fondo gris claro
+  - Padding vertical
+*/
+.profile-page {
+    min-height: 100vh;
+    background-color: var(--gray-50);
+    padding: 2rem 0;
+}
+
+/* Contenedor del perfil */
+.profile-container {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Encabezado del perfil */
+.profile-header {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Información del perfil */
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Avatar del perfil */
+.profile-avatar {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 9999px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--blue-100);
+    color: var(--blue-600);
+    font-size: 1.5rem;
+    font-weight: 500;
+    overflow: hidden;
+}
+
+/* Imagen del avatar (si tiene) */
+.profile-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Nombre del perfil */
+.profile-name {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.25rem;
+}
+
+/* Email del perfil */
+.profile-email {
+    color: var(--gray-600);
+    margin-bottom: 0.25rem;
+}
+
+/* Fecha de registro */
+.profile-join-date {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+}
+
+/* Formulario de perfil */
+.profile-form {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Título del formulario */
+.profile-form-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 1.5rem;
+}
+
+/* Grupos del formulario */
+.profile-form-group {
+    margin-bottom: 1rem;
+}
+
+/* Inputs del formulario de perfil */
+.profile-form-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efecto focus para inputs */
+.profile-form-input:focus {
+    outline: none;
+    border-color: var(--blue-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Texto de ayuda para formulario */
+.profile-form-hint {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    margin-top: 0.25rem;
+}
+
+/* Mensaje de éxito en formulario */
+.profile-form-message {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--green-600);
+    margin-bottom: 1rem;
+}
+
+/* 
+  Página de "Mis cursos":
+  - Altura mínima de 100vh
+  - Fondo gris claro
+  - Padding vertical
+*/
+.my-courses-page {
+    min-height: 100vh;
+    background-color: var(--gray-50);
+    padding: 2rem 0;
+}
+
+/* Contenedor de mis cursos */
+.my-courses-container {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Encabezado de mis cursos */
+.my-courses-header {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+}
+
+/* Título de mis cursos */
+.my-courses-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 1.5rem;
+}
+
+/* Estado vacío de mis cursos */
+.my-courses-empty {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+/* Icono de mis cursos vacío */
+.my-courses-empty-icon {
+    font-size: 6rem;
+    color: var(--gray-300);
+    margin-bottom: 1rem;
+}
+
+/* Título de mis cursos vacío */
+.my-courses-empty-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-600);
+    margin-bottom: 0.5rem;
+}
+
+/* Texto de mis cursos vacío */
+.my-courses-empty-text {
+    color: var(--gray-500);
+    margin-bottom: 1.5rem;
+}
+
+/* Grid de mis cursos */
+.my-courses-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+/* Media query: 2 columnas en tablets */
+@media (min-width: 768px) {
+    .my-courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Media query: 3 columnas en pantallas grandes */
+@media (min-width: 1024px) {
+    .my-courses-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Imagen de curso en "mis cursos" */
+.my-course-img {
+    width: 100%;
+    height: 10rem;
+    object-fit: cover;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+/* Título de curso en "mis cursos" */
+.my-course-title {
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Instructor de curso en "mis cursos" */
+.my-course-instructor {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    margin-bottom: 0.5rem;
+}
+
+/* Fecha de curso en "mis cursos" */
+.my-course-date {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    margin-bottom: 1rem;
+}
+
+/* Acciones para curso en "mis cursos" */
+.my-course-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* 
+  Página de aprendizaje de curso:
+  - Altura mínima de 100vh
+  - Fondo gris claro
+*/
+.course-learning {
+    min-height: 100vh;
+    background-color: var(--gray-50);
+}
+
+/* Encabezado de aprendizaje */
+.course-learning-header {
+    background-color: white;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+/* Contenido interno del encabezado */
+.course-learning-header-inner {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Título del curso en aprendizaje */
+.course-learning-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.25rem;
+}
+
+/* Instructor del curso en aprendizaje */
+.course-learning-instructor {
+    color: var(--gray-600);
+}
+
+/* Barra de progreso del curso */
+.course-learning-progress {
+    margin-top: 1rem;
+}
+
+/* Información de progreso (porcentaje completado) */
+.course-learning-progress-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+/* Barra de progreso (fondo) */
+.course-learning-progress-bar {
+    width: 100%;
+    height: 0.5rem;
+    background-color: var(--gray-200);
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+/* Barra de progreso (relleno) */
+.course-learning-progress-fill {
+    height: 100%;
+    background-color: var(--green-600);
+    transition: width 0.3s ease;
+}
+
+/* Contenido principal de aprendizaje */
+.course-learning-main {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem 1rem;
+}
+
+.course-learning-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Video */
+.course-learning-video {
+  background-color: black;
+  border-radius: 0.5rem;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  position: relative;
+}
+
+.course-learning-video iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Placeholder para video */
+.course-learning-video-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: black;
+  padding: 1rem;
+  text-align: center;
+}
+
+.course-learning-video-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.course-learning-video-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.course-learning-video-text {
+  color: var(--gray-300);
+}
+
+/* Responsive fallback */
+@media (max-width: 768px) {
+  .course-learning-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .course-learning-video {
+    aspect-ratio: 16/9;
+  }
+}
+
+/* Controles de aprendizaje (botones anterior/siguiente) */
+.course-learning-controls {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+}
+
+/* Título de lección actual */
+.course-learning-lesson-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Duración de lección actual */
+.course-learning-lesson-duration {
+    color: var(--gray-600);
+    margin-bottom: 1rem;
+}
+
+/* Acciones (botones) */
+.course-learning-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Lista de lecciones (sidebar) */
+.course-learning-lesson-list {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    position: sticky;
+    top: 6rem;
+}
+
+/* Título de lista de lecciones */
+.course-learning-lesson-list-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Contenedor de lecciones */
+.course-learning-lessons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Items de lección */
+.course-learning-lesson {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--gray-200);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Estado activo de lección (la que se está viendo) */
+.course-learning-lesson.active {
+    border-color: var(--blue-500);
+    background-color: var(--blue-50);
+}
+
+/* Estado completado de lección */
+.course-learning-lesson.completed {
+    border-color: var(--green-500);
+    background-color: var(--green-50);
+}
+
+/* Contenido de lección */
+.course-learning-lesson-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Parte izquierda de lección (número + título) */
+.course-learning-lesson-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Número de lección */
+.course-learning-lesson-number {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Estado completado para número de lección */
+.course-learning-lesson-number.completed {
+    background-color: var(--green-500);
+    color: white;
+}
+
+/* Estado activo para número de lección */
+.course-learning-lesson-number.active {
+    background-color: var(--blue-500);
+    color: white;
+}
+
+/* Estado por defecto para número de lección */
+.course-learning-lesson-number.default {
+    background-color: var(--gray-200);
+    color: var(--gray-600);
+}
+
+/* Información de lección */
+.course-learning-lesson-info {
+    flex: 1;
+}
+
+/* Nombre de lección */
+.course-learning-lesson-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Nombre de lección activa */
+.course-learning-lesson-name.active {
+    color: var(--blue-700);
+}
+
+/* Duración de lección */
+.course-learning-lesson-duration {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+}
+
+/* Estado de lección (completada/activa) */
+.course-learning-lesson-status {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* Estado completado */
+.course-learning-lesson-status.completed {
+    color: var(--green-600);
+}
+
+/* Estado activo */
+.course-learning-lesson-status.active {
+    color: var(--blue-600);
+}
+
+/* Resumen de progreso */
+.course-learning-progress-summary {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-200);
+}
+
+/* Porcentaje de progreso */
+.course-learning-progress-percent {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    text-align: center;
+    margin-bottom: 0.25rem;
+}
+
+/* Texto de progreso */
+.course-learning-progress-label {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    text-align: center;
+}
+
+/* 
+  Página para profesores (enseñar):
+  - Altura mínima de 100vh
+  - Fondo gris 
+*/
+.teach-page {
+    min-height: 100vh;
+    background-color: var(--gray-50);
+}
+
+/* Hero section para profesores */
+.teach-hero {
+    padding: 4rem 1rem;
+    background-color: #cccccc;
+    color: var(--gray-900);
+    text-align: center;
+}
+
+
+/* Título para profesores */
+.teach-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+/* Media query: tamaño de título más grande en pantallas grandes */
+@media (min-width: 768px) {
+    .teach-title {
+        font-size: 3rem;
+    }
+}
+
+/* Subtítulo para profesores */
+.teach-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 3rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Media query: tamaño de subtítulo más grande en pantallas grandes */
+@media (min-width: 768px) {
+    .teach-subtitle {
+        font-size: 1.5rem;
+    }
+}
+
+/* Grid de características para profesores */
+.teach-features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Media query: 3 columnas en pantallas grandes */
+@media (min-width: 768px) {
+    .teach-features {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Tarjeta de característica */
+.teach-feature {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+}
+
+/* Icono de característica */
+.teach-feature-icon {
+    width: 4rem;
+    height: 4rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.5rem;
+}
+
+/* Título de característica */
+.teach-feature-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    text-align: center;
+}
+
+/* Texto de característica */
+.teach-feature-text {
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+}
+
+/* Llamada a la acción */
+.teach-cta {
+    text-align: center;
+}
+
+/* Botón de CTA (quiero ser instructor) */ 
+.teach-cta-btn {
+  background-color: var(--primary-color); /* Usa tu variable de color */
+  color: white; /* Texto blanco */
+  font-weight: 600;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  transition: background-color 0.2s ease;
+}
+
+.teach-cta-btn:hover {
+  background-color: var(--primary-hover); /* Color oscuro al pasar el mouse */
+}
+
+.teach-intro-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.teach-intro-subtitle {
+  font-size: 1.125rem;
+  color: var(--gray-600);
+}
+
+.teach-intro-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.teach-intro-section {
+  background-color: #cccccc; /* Plomo claro */
+}
+
+.teach-benefits-section {
+  background-color: #ffffff; /* Blanco puro */
+}
+
+
+
+.teach-feature-icon {
+  font-size: 2.5rem;
+}
+
+.teach-feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.teach-feature-text {
+  color: var(--gray-600);
+}
+
+.teach-intro-image {
+  max-width: 500px;
+  width: 100%;
+}
+
+.teach-intro-image img {
+  margin-left: 3rem;
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+
+/* 
+  Spinner (indicador de carga):
+  - Animación giratoria
+  - Borde superior transparente para efecto visual
+*/
+.spinner {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid white;
+    border-top-color: transparent;
+    border-radius: 9999px;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5rem;
+}
+
+/* Animación para spinner */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 
+  Utilidades (utility classes):
+  Clases reutilizables para aplicar estilos comunes sin repetir código
+*/
+
+/* Clase para ocultar elementos */
+.hidden {
+    display: none;
+}
+
+/* Media query: ocultar solo en pantallas pequeñas */
+@media (min-width: 640px) {
+    .sm-hidden {
+        display: none;
+    }
+}
+
+/* Flexbox utilities */
+.flex {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+/* Gap utilities */
+.gap-1 {
+    gap: 0.25rem;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+.gap-3 {
+    gap: 0.75rem;
+}
+
+.gap-4 {
+    gap: 1rem;
+}
+
+.gap-6 {
+    gap: 1.5rem;
+}
+
+.gap-8 {
+    gap: 2rem;
+}
+
+/* Width utilities */
+.w-full {
+    width: 100%;
+}
+
+.max-w-md {
+    max-width: 28rem;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Margin bottom utilities */
+.mb-1 {
+    margin-bottom: 0.25rem;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+    margin-bottom: 0.75rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+/* Margin top utilities */
+.mt-1 {
+    margin-top: 0.25rem;
+}
+
+.mt-2 {
+    margin-top: 0.5rem;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.mt-6 {
+    margin-top: 1.5rem;
+}
+
+/* Padding utilities */
+.py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+/* Text utilities */
+.text-center {
+    text-align: center;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.text-xs {
+    font-size: 0.75rem;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+}
+
+.text-3xl {
+    font-size: 1.875rem;
+}
+
+.text-4xl {
+    font-size: 2.25rem;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+/* Line clamp for text truncation */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Transition utilities */
+.transition-all {
+    transition: all 0.2s ease;
+}
+
+.duration-300 {
+    transition-duration: 0.3s;
+}
+
+/* Border radius utilities */
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.rounded-full {
+    border-radius: 9999px;
+}
+
+/* Shadow utilities */
+.shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Aspect ratio utilities */
+.aspect-video {
+    aspect-ratio: 16/9;
+}
+
+/* Object fit utilities */
+.object-cover {
+    object-fit: cover;
+}
+
+/* Z-index utilities */
+.z-40 {
+    z-index: 40;
+}
+
+.z-50 {
+    z-index: 50;
+}
+
+.z-100 {
+    z-index: 100;
+}
+
+/*tamaño iconos */
+i.fas {
+    font-size: 24px;
+}
+
+/*tamaño icono perfil */
+#profile-btn i {
+    font-size: 40px;
+}
+
+#profile-btn {
+    color: var(--gray-700);
+    border: none;
+    background: none;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#profile-btn:hover {
+    color: var(--blue-600);
+}
+
+
+
+#video-player {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* Relación 16:9 */
+  background-color: black;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+#youtube-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+
+

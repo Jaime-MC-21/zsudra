@@ -1,0 +1,26 @@
+!DOCTYPE html
+html xmlnsth=httpwww.thymeleaf.org
+head
+    meta charset=UTF-8
+    titleIniciar Sesióntitle
+head
+body
+    h1Loginh1
+    !-- Formulario POST a login (manejado por Spring Security) --
+    form thaction=@{login} method=post
+        div
+            label for=usernameUsuariolabel
+            input type=text id=username name=username required
+        div
+        div
+            label for=passwordContraseñalabel
+            input type=password id=password name=password required
+        div
+        button type=submitIngresarbutton
+    form
+    !-- Mensaje de error (opcional) --
+    div thif=${param.error}
+        Usuario o contraseña incorrectos.
+    div
+body
+html

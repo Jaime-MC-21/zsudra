@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zsudra - Plataforma de Cursos Online</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-container">
+          <div class="header-inner">
+            <div class="flex items-center">
+              <button id="logo-btn" class="logo">Zsudra</button>
+            </div>
+
+            <nav class="nav">
+              <button id="courses-btn" class="nav-btn">Cursos</button>
+              <button id="my-courses-btn" class="nav-btn">Mis cursos</button>
+              <button id="teach-btn" class="nav-btn">Enseña en Zsudra</button>
+            </nav>
+
+            <div class="header-actions">
+              <button id="cart-btn" class="cart-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-badge" class="cart-badge hidden">0</span>
+              </button>
+
+              <div id="auth-buttons">
+                <button id="login-btn" class="btn btn-outline btn-sm">
+                  Iniciar sesión
+                </button>
+                <button id="register-btn" class="btn btn-primary btn-sm">
+                  Registrarse
+                </button>
+              </div>
+
+              <div id="user-menu" class="hidden">
+                <div class="flex items-center gap-3">
+                  <button
+                    id="profile-btn"
+                    class="flex items-center gap-2 text-gray-700 hover:text-blue-600"
+                  >
+                    <i class="fas fa-user"></i>
+                    <span id="username" class="sm-hidden"></span>
+                  </button>
+                  <button id="logout-btn" class="btn btn-outline btn-sm">
+                    Cerrar sesión
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main>
+        <!-- Home Page -->
+        <div id="home-page">
+          <!-- Hero Section -->
+          <section class="hero">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h1 class="hero-title">Aprende sin límites</h1>
+              <p class="hero-subtitle">
+                Descubre miles de cursos online impartidos por expertos de la
+                industria
+              </p>
+            </div>
+          </section>
+
+          <!-- Courses Section -->
+          <section class="courses-section">
+            <div class="courses-container">
+              <div class="text-center mb-12">
+                <h2 class="section-title">Cursos populares</h2>
+                <p class="section-subtitle">
+                  Aprende las habilidades más demandadas con nuestros cursos
+                  mejor valorados
+                </p>
+              </div>
+
+              <div id="courses-grid" class="courses-grid">
+                <!-- Courses will be rendered here by JavaScript -->
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Course Detail Page -->
+        <div id="course-detail-page" class="hidden">
+          <div class="course-detail">
+            <div class="course-container">
+              <div class="course-grid">
+                <!-- Main Content -->
+                <div class="course-main">
+                  <img
+                    id="course-detail-image"
+                    class="course-detail-img"
+                    src=""
+                    alt=""
+                  />
+                  <button
+                    id="back-to-courses-btn"
+                    class="btn btn-primary btn-sm mb-4"
+                  >
+                    ← Volver a Cursos
+                  </button>
+
+                  <h1 id="course-detail-title" class="course-detail-title"></h1>
+                  <p
+                    id="course-detail-description"
+                    class="course-detail-description"
+                  ></p>
+
+                  <div id="course-detail-meta" class="course-detail-meta">
+                    <!-- Meta info will be rendered here -->
+                  </div>
+
+                  <!-- Instructor -->
+                  <div class="course-instructor-card">
+                    <h3 class="instructor-title">Sobre el instructor</h3>
+                    <div class="instructor-info">
+                      <div id="instructor-avatar" class="avatar">
+                        <!-- Avatar will be rendered here -->
+                      </div>
+                      <div>
+                        <h4 id="instructor-name" class="instructor-name"></h4>
+                        <p id="instructor-role" class="instructor-role"></p>
+                        <p id="instructor-bio" class="instructor-bio"></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Course Content -->
+                  <div class="course-content">
+                    <h3 class="course-content-title">Contenido del Curso</h3>
+                    <div class="course-content-header">
+                      <p
+                        id="course-content-meta"
+                        class="course-content-meta"
+                      ></p>
+                    </div>
+                    <div id="lesson-list" class="lesson-list">
+                      <!-- Lessons will be rendered here -->
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="course-sidebar">
+                  <div class="course-sidebar-card">
+                    <div class="course-price-container">
+                      <span
+                        id="course-detail-price"
+                        class="course-price-current"
+                      ></span>
+                      <span
+                        id="course-detail-original-price"
+                        class="course-price-original"
+                      ></span>
+                    </div>
+
+                    <div class="course-actions">
+                      <button id="buy-now-btn" class="btn btn-primary">
+                        Comprar ahora
+                      </button>
+                      <button id="add-to-cart-btn" class="btn btn-outline">
+                        Agregar al carrito
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cart Page -->
+        <div id="cart-page" class="hidden">
+          <div class="cart-page">
+            <div class="cart-container">
+              <h1 class="cart-title">Carrito de compras</h1>
+
+              <div id="cart-empty" class="cart-empty">
+                <i class="fas fa-shopping-cart cart-empty-icon"></i>
+                <h2 class="cart-empty-title">Tu carrito está vacío</h2>
+                <p class="cart-empty-text">
+                  Agrega algunos cursos para comenzar tu aprendizaje
+                </p>
+                <button id="explore-courses-btn" class="btn btn-primary">
+                  Explorar cursos
+                </button>
+              </div>
+
+              <div id="cart-content" class="hidden">
+                <div class="cart-grid">
+                  <div class="cart-items">
+                    <!-- Cart items will be rendered here -->
+                  </div>
+
+                  <div>
+                    <div class="cart-summary">
+                      <div class="cart-summary-header">
+                        <h3 class="cart-summary-title">Resumen del pedido</h3>
+                      </div>
+                      <div class="cart-summary-body">
+                        <div class="cart-summary-row">
+                          <span>Subtotal:</span>
+                          <span id="cart-subtotal">$0.00</span>
+                        </div>
+                        <div class="cart-summary-total">
+                          <span>Total:</span>
+                          <span id="cart-total">$0.00</span>
+                        </div>
+                      </div>
+                      <div class="cart-summary-footer">
+                        <button
+                          id="purchase-cart-btn"
+                          class="btn btn-primary w-full btn-lg"
+                        >
+                          Comprar cursos
+                        </button>
+                        <p
+                          id="login-required-message"
+                          class="cart-summary-note hidden"
+                        >
+                          Debes iniciar sesión para realizar la compra
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div id="profile-page" class="hidden">
+          <div class="profile-page">
+            <div class="profile-container">
+              <!-- Profile Header -->
+              <div class="profile-header">
+                <div class="profile-info">
+                  <div id="profile-avatar" class="profile-avatar">
+                    <!-- Avatar will be rendered here -->
+                  </div>
+                  <div>
+                    <h1 id="profile-name" class="profile-name"></h1>
+                    <p id="profile-email" class="profile-email"></p>
+                    <p id="profile-join-date" class="profile-join-date"></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Editable Profile Form -->
+              <div class="profile-form">
+                <h2 class="profile-form-title">Editar Perfil</h2>
+                <form id="profile-form">
+                  <div class="profile-form-group">
+                    <label for="profile-name-input" class="form-label"
+                      >Nombre Completo</label
+                    >
+                    <input
+                      type="text"
+                      id="profile-name-input"
+                      class="profile-form-input"
+                      required
+                    />
+                  </div>
+
+                  <div class="profile-form-group">
+                    <label for="profile-email-input" class="form-label"
+                      >Correo Electrónico</label
+                    >
+                    <input
+                      type="email"
+                      id="profile-email-input"
+                      class="profile-form-input"
+                      required
+                    />
+                  </div>
+
+                  <div class="profile-form-group">
+                    <label for="profile-password-input" class="form-label"
+                      >Nueva Contraseña (opcional)</label
+                    >
+                    <input
+                      type="password"
+                      id="profile-password-input"
+                      class="profile-form-input"
+                      minlength="6"
+                    />
+                    <p class="profile-form-hint">
+                      Deja en blanco si no quieres cambiar la contraseña
+                    </p>
+                  </div>
+
+                  <div
+                    id="profile-update-message"
+                    class="profile-form-message hidden"
+                  ></div>
+
+                  <button
+                    type="submit"
+                    id="update-profile-btn"
+                    class="btn btn-primary w-full"
+                  >
+                    Actualizar Perfil
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- My Courses Page -->
+        <div id="my-courses-page" class="hidden">
+          <div class="my-courses-page">
+            <div class="my-courses-container">
+              <div class="my-courses-header">
+                <h1 class="my-courses-title">Mis cursos</h1>
+
+                <div id="my-courses-empty" class="my-courses-empty">
+                  <i class="fas fa-book my-courses-empty-icon"></i>
+                  <h3 class="my-courses-empty-title">No tienes cursos aún</h3>
+                  <p class="my-courses-empty-text">
+                    Explora nuestro catálogo y comienza a aprender
+                  </p>
+                  <button id="explore-my-courses-btn" class="btn btn-primary">
+                    Explorar cursos
+                  </button>
+                </div>
+
+                <div id="my-courses-content" class="hidden">
+                  <div id="my-courses-grid" class="my-courses-grid">
+                    <!-- Purchased courses will be rendered here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course Learning Page -->
+        <div id="course-learning-page" class="hidden">
+          <div class="course-learning">
+            <!-- Header del curso -->
+            <div class="course-learning-header">
+              <div class="course-learning-header-inner">
+                <div>
+                  <h1
+                    id="learning-course-title"
+                    class="course-learning-title"
+                  ></h1>
+                  <p
+                    id="learning-course-instructor"
+                    class="course-learning-instructor"
+                  ></p>
+                </div>
+                <button
+                  id="back-to-my-courses-btn"
+                  class="btn btn-primary btn-sm mb-4"
+                >
+                  ← Volver a mis cursos
+                </button>
+              </div>
+
+              <!-- Barra de progreso -->
+              <div class="course-learning-progress px-4 py-2">
+                <div class="course-learning-progress-info">
+                  <span id="progress-text">0 de 0 lecciones completadas</span>
+                  <span id="progress-percent">0%</span>
+                </div>
+                <div class="course-learning-progress-bar">
+                  <div
+                    id="progress-fill"
+                    class="course-learning-progress-fill"
+                    style="width: 0%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contenido principal -->
+            <div class="course-learning-main">
+              <div class="course-learning-grid">
+                <!-- Columna izquierda: Video, controles y descripción -->
+                <div class="left-column">
+                  <div class="course-learning-video">
+                    <div id="video-player" class="hidden">
+                      <iframe
+                        id="youtube-player"
+                        src=""
+                        frameborder="0"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+
+                    <div id="video-placeholder" class="course-learning-video-placeholder">
+                      <i class="fas fa-play course-learning-video-icon"></i>
+                      <h3 id="current-lesson-title" class="course-learning-video-title">
+                        Selecciona una lección
+                      </h3>
+                      <p class="course-learning-video-text">
+                        Reproductor de video (placeholder)
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="course-learning-controls">
+                    <h2 id="current-lesson-full-title" class="course-learning-lesson-title"></h2>
+                    <p id="current-lesson-duration" class="course-learning-lesson-duration"></p>
+
+                    <div class="course-learning-actions">
+                      <button id="mark-complete-btn" class="btn btn-primary">
+                        Marcar como completada
+                      </button>
+                      <button id="next-lesson-btn" class="btn btn-outline hidden">
+                        Siguiente lección →
+                      </button>
+                    </div>
+                  </div>
+
+                  <div
+                    id="lesson-description"
+                    class="lesson-description hidden bg-gray-50 p-4 rounded-lg mt-4 border-l-4 border-blue-500"
+                  >
+                    <h3 class="font-bold text-lg mb-2 flex items-center gap-2">
+                      <i class="fas fa-tasks text-green-500"></i> Lo que aprenderás:
+                    </h3>
+                    <p id="lesson-description-text" class="text-gray-700"></p>
+                  </div>
+                </div>
+
+                <!-- Columna derecha: Lista de lecciones -->
+                <div class="right-column">
+                  <div class="course-learning-lesson-list">
+                    <h3 class="course-learning-lesson-list-title">
+                      Contenido del curso
+                    </h3>
+                    <div id="course-lessons-list" class="course-learning-lessons">
+                      <!-- Lessons will be rendered here -->
+                    </div>
+
+                    <div class="course-learning-progress-summary">
+                      <div id="course-progress-percent" class="course-learning-progress-percent">
+                        0%
+                      </div>
+                      <div class="course-learning-progress-label">
+                        Progreso del curso
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Teach Page -->
+        <div id="teach-page" class="hidden">
+          <div class="teach-page">
+            <section class="teach-hero">
+              <!-- Intro: Fondo plomo claro -->
+              <div class="teach-intro-section bg-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                  <div class="flex flex-col md:flex-row items-center justify-center gap-12 mt-12 max-w-5xl mx-auto">
+                    <!-- Columna izquierda: texto -->
+                    <div class="teach-intro-text flex-1 text-left md:w-1/2">
+                      <h2 class="teach-intro-title text-4xl font-bold mb-4">
+                        Ven a enseñar con nosotros
+                      </h2>
+                      <p class="teach-intro-subtitle text-lg mb-6 text-gray-600">
+                        Conviértete en instructor y cambia vidas, incluida la tuya.
+                      </p>
+                      <button
+                        id="become-instructor-btn"
+                        class="btn btn-primary"
+                      >
+                        Quiero ser instructor
+                      </button>
+                    </div>
+
+                    <!-- Columna derecha: imagen -->
+                    <div class="teach-intro-image flex-1 md:w-1/2">
+                      <img
+                        src="img/instructor-hero.jpg"
+                        alt="Instructor sonriente"
+                        class="rounded-lg shadow-lg w-full max-w-md mx-auto"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Beneficios: Fondo blanco -->
+              <div class="teach-benefits-section bg-white">
+                <div
+                  class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16"
+                >
+                  <h2 class="text-3xl font-bold mb-12">Razones para empezar</h2>
+
+                  <div class="teach-features grid md:grid-cols-3 gap-10">
+                    <div class="teach-feature">
+                      <div class="teach-feature-icon text-4xl mb-4">💰</div>
+                      <h3
+                        class="teach-feature-title text-xl font-semibold mb-2"
+                      >
+                        Genera ingresos con tus cursos
+                      </h3>
+                      <p class="teach-feature-text text-gray-600">
+                        Monetiza tu experiencia y conocimientos creando cursos
+                        que impacten a miles de estudiantes.
+                      </p>
+                    </div>
+
+                    <div class="teach-feature">
+                      <div class="teach-feature-icon text-4xl mb-4">🌍</div>
+                      <h3
+                        class="teach-feature-title text-xl font-semibold mb-2"
+                      >
+                        Llega a estudiantes de todo el mundo
+                      </h3>
+                      <p class="teach-feature-text text-gray-600">
+                        Expande tu alcance y enseña a una audiencia global sin
+                        límites geográficos.
+                      </p>
+                    </div>
+
+                    <div class="teach-feature">
+                      <div class="teach-feature-icon text-4xl mb-4">⭐</div>
+                      <h3
+                        class="teach-feature-title text-xl font-semibold mb-2"
+                      >
+                        Construye tu marca personal como experto
+                      </h3>
+                      <p class="teach-feature-text text-gray-600">
+                        Establécete como una autoridad en tu campo y construye
+                        una reputación sólida.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+
+      <!-- Login Modal -->
+      <div id="login-modal" class="modal-overlay hidden">
+        <div class="modal">
+          <div class="modal-header">
+            <h2 class="modal-title">Iniciar sesión</h2>
+            <button id="close-login-modal" class="modal-close">✕</button>
+          </div>
+          <div class="modal-body">
+            <form id="login-form">
+              <div class="form-group">
+                <label for="login-email" class="form-label"
+                  >Correo electrónico</label
+                >
+                <input
+                  type="email"
+                  id="login-email"
+                  class="form-input"
+                  placeholder="tu@email.com"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="login-password" class="form-label"
+                  >Contraseña</label
+                >
+                <input
+                  type="password"
+                  id="login-password"
+                  class="form-input"
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
+
+              <div id="login-error" class="form-error hidden"></div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <div class="modal-actions">
+              <button
+                type="submit"
+                form="login-form"
+                id="login-submit-btn"
+                class="btn btn-primary flex-1"
+              >
+                Iniciar sesión
+              </button>
+              <button id="cancel-login-btn" class="btn btn-outline flex-1">
+                Cancelar
+              </button>
+            </div>
+            <div class="modal-link">
+              ¿No tienes cuenta?
+              <button
+                id="show-register-btn"
+                class="text-blue-600 hover:underline"
+              >
+                Regístrate aquí
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Register Modal -->
+      <div id="register-modal" class="modal-overlay hidden">
+        <div class="modal">
+          <div class="modal-header">
+            <h2 class="modal-title">Crear cuenta</h2>
+            <button id="close-register-modal" class="modal-close">✕</button>
+          </div>
+          <div class="modal-body">
+            <form id="register-form">
+              <div class="form-group">
+                <label for="register-name" class="form-label"
+                  >Nombre completo</label
+                >
+                <input
+                  type="text"
+                  id="register-name"
+                  class="form-input"
+                  placeholder="Juan Pérez"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="register-email" class="form-label"
+                  >Correo electrónico</label
+                >
+                <input
+                  type="email"
+                  id="register-email"
+                  class="form-input"
+                  placeholder="tu@email.com"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="register-password" class="form-label"
+                  >Contraseña</label
+                >
+                <input
+                  type="password"
+                  id="register-password"
+                  class="form-input"
+                  placeholder="••••••••"
+                  minlength="6"
+                  required
+                />
+                <p class="form-hint">Mínimo 6 caracteres</p>
+              </div>
+
+              <div id="register-error" class="form-error hidden"></div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <div class="modal-actions">
+              <button
+                type="submit"
+                form="register-form"
+                id="register-submit-btn"
+                class="btn btn-primary flex-1"
+              >
+                Crear cuenta
+              </button>
+              <button id="cancel-register-btn" class="btn btn-outline flex-1">
+                Cancelar
+              </button>
+            </div>
+            <div class="modal-link">
+              ¿Ya tienes cuenta?
+              <button id="show-login-btn" class="text-blue-600 hover:underline">
+                Inicia sesión aquí
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Instructor Modal -->
+      <div id="instructor-modal" class="modal-overlay hidden">
+        <div class="modal">
+          <div class="modal-header">
+            <h2 class="modal-title">Postulación de Instructor</h2>
+            <button id="close-instructor-modal" class="modal-close">✕</button>
+          </div>
+          <div class="modal-body">
+            <form id="instructor-form">
+              <div class="form-group">
+                <label for="instructor-name" class="form-label"
+                  >Nombre completo</label
+                >
+                <input
+                  type="text"
+                  id="instructor-name"
+                  class="form-input"
+                  placeholder="Tu nombre completo"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="instructor-email" class="form-label"
+                  >Correo electrónico</label
+                >
+                <input
+                  type="email"
+                  id="instructor-email"
+                  class="form-input"
+                  placeholder="tu@email.com"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="instructor-experience" class="form-label"
+                  >Experiencia y área de especialización</label
+                >
+                <textarea
+                  id="instructor-experience"
+                  class="form-textarea"
+                  placeholder="Describe tu experiencia profesional y en qué área te especializas..."
+                  required
+                ></textarea>
+              </div>
+
+              <div id="instructor-message" class="form-success hidden"></div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <div class="modal-actions">
+              <button
+                type="submit"
+                form="instructor-form"
+                id="instructor-submit-btn"
+                class="btn btn-primary flex-1"
+              >
+                Enviar postulación
+              </button>
+              <button id="cancel-instructor-btn" class="btn btn-outline flex-1">
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Welcome Message -->
+      <div id="welcome-message" class="welcome-message hidden">
+        <div class="welcome-inner">
+          <div class="welcome-icon">🎉</div>
+          <div class="welcome-content">
+            <div id="welcome-title" class="welcome-title"></div>
+            <div id="welcome-text" class="welcome-text"></div>
+            <div id="welcome-hint" class="welcome-hint hidden"></div>
+          </div>
+          <button id="close-welcome-message" class="welcome-close">×</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+  </body>
+</html>
